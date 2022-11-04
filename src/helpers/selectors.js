@@ -11,3 +11,15 @@ export function getAppointmentsForDay(state, day) {
 
 }
 
+export function getInterview(state, interview) {
+
+ const interviewOut = interview ? {...interview} : null;
+
+  if (interviewOut) {
+    interviewOut.interviewer = state.interviewers[interviewOut.interviewer];
+  }
+
+return interviewOut;
+
+}
+
