@@ -10,14 +10,8 @@ const updateSpotsRemaining = function(state, id, appointments) {
   const days = [...state.days]
   const dayIndex = days.findIndex((day) => day.appointments.includes(id));
   const dayAppts = days[dayIndex].appointments;
-  const spots = Object.keys(appointments).reduce((accumulator, key) => {
-    const appt = appointments[key];
 
-    if (dayAppts.includes(appt.id) && !appt.interview) {
-      return accumulator + 1;
-    }
-    return accumulator;
-    }, 0)
+  const spots = Object.keys(appointments).filter((key) => dayAppts.includes(Number(key)) && !appointments[key].interview).length
 
   days[dayIndex] = {...days[dayIndex], spots} 
 
