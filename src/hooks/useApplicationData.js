@@ -61,10 +61,6 @@ const useApplicationData = function() {
 
     const webSocket = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL);
 
-    webSocket.onopen = () => {
-      webSocket.send("ping")
-    }
-
     webSocket.onmessage = (event) => {
       const message = JSON.parse(event.data)
       if (message.type === "SET_INTERVIEW") {
