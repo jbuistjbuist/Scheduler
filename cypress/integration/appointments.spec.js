@@ -34,16 +34,12 @@ describe("Appointments", () => {
   });
 
   it.only("should cancel an interview", () => {
-    cy.get("[alt=Delete]")
-    .first()
-    .click({ force: true });
+    cy.get("[alt=Delete]").first().click({ force: true });
 
     cy.contains("button", "Confirm").click();
-    cy.contains(".appointment__card", "Deleting")
-    cy.get('.schedule > :nth-child(1)').should("not.contain", "Deleting")
+    cy.contains(".appointment__card", "Deleting");
+    cy.get(".schedule > :nth-child(1)").should("not.contain", "Deleting");
 
-    cy.get(".schedule").should("not.contain", "Archie Cohen")
-
-  })
-
+    cy.get(".schedule").should("not.contain", "Archie Cohen");
+  });
 });
