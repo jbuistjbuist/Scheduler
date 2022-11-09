@@ -19,21 +19,21 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
       - run: npm test
 
-deploy:
-  machine:
-    enabled: true
+  deploy:
+    machine:
+      enabled: true
 
-  working_directory: ~/client
+    working_directory: ~/client
 
-  steps:
-    - add_ssh_keys:
-        fingerprints:
-          - "01:97:64:92:b9:f4:d4:ee:62:93:16:e8:98:03:f2:cd"
-    - checkout
-    - run:
-        name: Push Master to Production
-        command: |
-          git push https://github.com/jbuistjbuist/Scheduler.git master:production
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "01:97:64:92:b9:f4:d4:ee:62:93:16:e8:98:03:f2:cd"
+      - checkout
+      - run:
+          name: Push Master to Production
+          command: |
+            git push https://github.com/jbuistjbuist/Scheduler.git master:production
 
 workflows:
   version: 2
@@ -49,3 +49,5 @@ workflows:
               ignore: production
           requires:
             - build
+
+
