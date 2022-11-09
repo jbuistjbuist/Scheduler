@@ -1,18 +1,21 @@
-import React, { useState }from "react";
+import React, { useState } from "react";
 import InterviewerList from "components/InterviewerList";
 import Button from "components/Button";
 
-
 export default function Form(props) {
-
-  const {interviewers, interviewer : inhInterviewer, student : inhStudent, onSave, onCancel} = {...props}
+  const {
+    interviewers,
+    interviewer: inhInterviewer,
+    student: inhStudent,
+    onSave,
+    onCancel,
+  } = { ...props };
 
   const [student, setStudent] = useState(inhStudent || "");
   const [interviewer, setInterviewer] = useState(inhInterviewer?.id || null);
   const [error, setError] = useState("");
 
   const validate = () => {
-
     if (student === "") {
       setError("Student name cannot be blank");
       return;
@@ -20,28 +23,27 @@ export default function Form(props) {
     if (!interviewer) {
       setError("Please select an interviewer");
       return;
-    }  
+    }
 
     setError("");
     onSave(student, interviewer);
-  }
+  };
 
   const reset = () => {
     setError("");
     setStudent("");
     setInterviewer(null);
-  }
+  };
 
   const cancel = () => {
     reset();
     onCancel();
-  }
+  };
 
-
-  return(
+  return (
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">
-        <form autoComplete="off"  onSubmit={event => event.preventDefault()}>
+        <form autoComplete="off" onSubmit={(event) => event.preventDefault()}>
           <input
             data-testid="student-name-input"
             className="appointment__create-input text--semi-bold"
@@ -53,7 +55,7 @@ export default function Form(props) {
           />
         </form>
         <section className="appointment__validation">{error}</section>
-        <InterviewerList 
+        <InterviewerList
           interviewers={interviewers}
           value={interviewer}
           onChange={setInterviewer}
@@ -61,11 +63,14 @@ export default function Form(props) {
       </section>
       <section className="appointment__card-right">
         <section className="appointment__actions">
-          <Button danger onClick={cancel}>Cancel</Button>
-          <Button confirm onClick={validate}>Save</Button>
+          <Button danger onClick={cancel}>
+            Cancel
+          </Button>
+          <Button confirm onClick={validate}>
+            Save
+          </Button>
         </section>
       </section>
     </main>
-
-  )
+  );
 }

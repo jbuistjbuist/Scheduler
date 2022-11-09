@@ -1,13 +1,10 @@
 import React from "react";
 
-
-
 export default function Show(props) {
-
   const { student, interviewer, onEdit, onDelete } = props;
-  const { name : intName } = interviewer || {};
+  const { name: intName } = interviewer || {};
 
-  return(
+  return (
     <main className="appointment__card appointment__card--show">
       <section className="appointment__card-left">
         <h2 className="text--regular"> {student} </h2>
@@ -33,5 +30,5 @@ export default function Show(props) {
         </section>
       </section>
     </main>
-  )
+  );
 }

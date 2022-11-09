@@ -1,12 +1,9 @@
 import React from "react";
 
-
-
 export default function Empty(props) {
-
   const { onAdd } = props;
 
-  return(
+  return (
     <main className="appointment__add">
       <img
         onClick={onAdd}
@@ -15,5 +12,5 @@ export default function Empty(props) {
         alt="Add"
       />
     </main>
-  )
+  );
 }

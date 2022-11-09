@@ -162,9 +162,9 @@ describe("Application component", () => {
       getByAltText(appointment, /Loading/i)
     );
 
-    fireEvent.click(getByAltText(appointment, /close/i))
+    fireEvent.click(getByAltText(appointment, /close/i));
 
-    console.log(prettyDOM(appointment))
+    console.log(prettyDOM(appointment));
 
     expect(getByText(appointment, /Archie Cohen/i)).toBeInTheDocument();
   });
