@@ -33,7 +33,7 @@ describe("Appointments", () => {
     cy.contains("Save").click();
   });
 
-  it.only("should cancel an interview", () => {
+  it("should cancel an interview", () => {
     cy.get("[alt=Delete]").first().click({ force: true });
 
     cy.contains("button", "Confirm").click();
