@@ -22,7 +22,7 @@ const ERROR_DELETE = "ERROR_DELETE";
 /**
  *
  * @param {object} props receives props from parent element
- * @returns {JSX.Element} returns JSX component which contains all of the appointments for a single day
+ * @returns {JSX.Element} returns JSX component which contains a single appointment
  */
 export default function Appointment(props) {
   const { time, interviewers, id, bookInterview, cancelInterview } = props;

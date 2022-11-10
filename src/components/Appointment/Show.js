@@ -3,7 +3,7 @@ import React from "react";
 /**
  *
  * @param {object} props receives props from parent element
- * @returns {JSX.Element} returns JSX component which contains shows a booked appointment
+ * @returns {JSX.Element} returns JSX component which shows a booked appointment
  */
 export default function Show(props) {
   const { student, interviewer, onEdit, onDelete } = props;
