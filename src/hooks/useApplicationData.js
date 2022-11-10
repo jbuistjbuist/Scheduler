@@ -1,10 +1,18 @@
 import { useEffect, useReducer } from "react";
 import axios from "axios";
 
+//constants for the reducer function
 const SET_DAY = "SET_DAY";
 const SET_APPLICATION_DATA = "SET_APPLICATION_DATA";
 const SET_INTERVIEW = "SET_INTERVIEW";
 
+/**
+ *
+ * @param {object} state the state object containing the app data
+ * @param {integer} id the id of a specific appointment
+ * @param {appointments} appointments the modified appointments object
+ * @returns a modified days object with an updated value for the spots remaining for the given day
+ */
 const updateSpotsRemaining = function (state, id, appointments) {
   const days = [...state.days];
   const dayIndex = days.findIndex((day) => day.appointments.includes(id));
@@ -19,6 +27,12 @@ const updateSpotsRemaining = function (state, id, appointments) {
   return days;
 };
 
+/**
+ *
+ * @param {object} state
+ * @param {string} action
+ * @returns returns updated state object to be set by useReducer
+ */
 const reducer = function (state, action) {
   const { day, days, interviewers, appointments, id, interview } = {
     ...action,
@@ -48,6 +62,11 @@ const reducer = function (state, action) {
   }
 };
 
+/**
+ * responsible for fetching app data on load, connecting to web socket, and providing the function to cancel/book an interview
+ * @returns {object} an object with the state and methods to be used by the application
+ */
+
 const useApplicationData = function () {
   const [state, dispatch] = useReducer(reducer, {
     days: [],
@@ -59,8 +78,10 @@ const useApplicationData = function () {
   const setDay = (day) => dispatch({ type: SET_DAY, day });
 
   useEffect(() => {
+    //create websocket on load
     const webSocket = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL);
 
+    //listen for set_interview messages on the websocket, and update state accordingly
     webSocket.onmessage = (event) => {
       const message = JSON.parse(event.data);
       if (message.type === "SET_INTERVIEW") {
@@ -71,7 +92,7 @@ const useApplicationData = function () {
         });
       }
     };
-
+    //get app data on load and update state with the data
     Promise.all([
       axios.get("/api/days"),
       axios.get("/api/appointments"),
@@ -84,10 +105,11 @@ const useApplicationData = function () {
         interviewers: interviewersRes.data,
       })
     );
-
+    //clean up function for the websocket
     return () => webSocket.close();
   }, []);
 
+  //function used to cancel or book an interview
   const setInterview = function (id, interview = null) {
     if (interview) {
       return axios.put(`/api/appointments/${id}`, { interview }).then((res) => {

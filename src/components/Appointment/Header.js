@@ -1,5 +1,10 @@
 import React from "react";
 
+/**
+ *
+ * @param {object} props receives props from parent element
+ * @returns {JSX.Element} returns JSX component which is the header for the appointment
+ */
 export default function Header(props) {
   return (
     <header className="appointment__time">

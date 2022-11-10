@@ -1,3 +1,5 @@
+//a mock for the axios library for testing purposes
+
 const fixtures = {
   days: [
     {

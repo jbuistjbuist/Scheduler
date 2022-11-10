@@ -1,5 +1,10 @@
 import React from "react";
 
+/**
+ *
+ * @param {object} props receives props from parent element
+ * @returns {JSX.Element} returns JSX component which is shown while an appointment is being deleted or saved.
+ */
 export default function Status(props) {
   return (
     <main className="appointment__card appointment__card--status">

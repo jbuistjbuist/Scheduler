@@ -1,3 +1,9 @@
+/**
+ *
+ * @param {object} state
+ * @param {string} day
+ * @returns {Array<T>} a array of the appiontments for the provided day
+ */
 export function getAppointmentsForDay(state, day) {
   const dayAppointments = [];
   const dayApptIds =
@@ -11,6 +17,12 @@ export function getAppointmentsForDay(state, day) {
   return dayAppointments;
 }
 
+/**
+ *
+ * @param {object} state
+ * @param {object} interview
+ * @returns {object} an object containing the interview information, replacing the integer which references the interview
+ */
 export function getInterview(state, interview) {
   const interviewOut = interview ? { ...interview } : null;
 
@@ -21,6 +33,12 @@ export function getInterview(state, interview) {
   return interviewOut;
 }
 
+/**
+ *
+ * @param {object} state
+ * @param {string} day
+ * @returns {Array<T>} a array of the interviewers for the provided day
+ */
 export function getInterviewersForDay(state, day) {
   const dayInterviewers = [];
   const dayIntvIds =

@@ -19,12 +19,19 @@ const EDIT = "EDIT";
 const ERROR_SAVE = "ERROR_SAVE";
 const ERROR_DELETE = "ERROR_DELETE";
 
+/**
+ *
+ * @param {object} props receives props from parent element
+ * @returns {JSX.Element} returns JSX component which contains all of the appointments for a single day
+ */
 export default function Appointment(props) {
   const { time, interviewers, id, bookInterview, cancelInterview } = props;
   const { interview } = props || {};
 
   const { mode, transition, back } = useVisualMode(interview ? SHOW : EMPTY);
 
+  /*this use effect is here to ensure that the display of the appointments
+  renders correctly when the app receives updates from the web socket */
   useEffect(() => {
     if (interview && mode === EMPTY) {
       transition(SHOW);
@@ -34,6 +41,13 @@ export default function Appointment(props) {
     }
   }, [interview, transition, mode]);
 
+  /**
+   *
+   * @param {string} name
+   * @param {object} interviewer
+   * recieves the name and an object representing the interviewer. transitions the appointment slot to saving status
+   * and then shows the appointment once the API response is complete. if there is an error it will display an error message to the user.
+   */
   const save = function (name, interviewer) {
     const interview = {
       student: name,
@@ -46,6 +60,10 @@ export default function Appointment(props) {
       .catch((error) => transition(ERROR_SAVE, true));
   };
 
+  /**
+   * transitions the appointment to deleting status, and then calls a function to make a cancellation request to the server.
+   * once the promise resolved, it transitions to empty status, or error if the promise is rejected.
+   */
   const deleteAppt = function () {
     transition(DELETING, true);
     cancelInterview(id)

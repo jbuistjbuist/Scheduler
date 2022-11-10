@@ -1,5 +1,10 @@
 import React from "react";
 
+/**
+ *
+ * @param {object} props receives props from parent element
+ * @returns {JSX.Element} returns JSX component for when there is a server error saving/deleting appointment
+ */
 export default function Error(props) {
   const { message, onClose } = props;
 

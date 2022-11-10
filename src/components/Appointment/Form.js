@@ -2,6 +2,11 @@ import React, { useState } from "react";
 import InterviewerList from "components/InterviewerList";
 import Button from "components/Button";
 
+/**
+ *
+ * @param {object} props receives props from parent element
+ * @returns {JSX.Element} returns JSX component representing the form to create or edit a component
+ */
 export default function Form(props) {
   const {
     interviewers,
@@ -11,10 +16,15 @@ export default function Form(props) {
     onCancel,
   } = { ...props };
 
+  //use preexisting student and interviewer values if editing appointment, otherwise they will be null
   const [student, setStudent] = useState(inhStudent || "");
   const [interviewer, setInterviewer] = useState(inhInterviewer?.id || null);
   const [error, setError] = useState("");
 
+  /**
+   *
+   * validates that the user has input a name and selected an interviewer before submitting the data
+   */
   const validate = () => {
     if (student === "") {
       setError("Student name cannot be blank");
@@ -29,12 +39,18 @@ export default function Form(props) {
     onSave(student, interviewer);
   };
 
+  /**
+   * used to reset the form values if the user cancels their submission
+   */
   const reset = () => {
     setError("");
     setStudent("");
     setInterviewer(null);
   };
 
+  /**
+   * resets the form values and calls the onCancel method from the parent element when the user clicks 'cancel'
+   */
   const cancel = () => {
     reset();
     onCancel();
