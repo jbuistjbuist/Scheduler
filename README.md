@@ -24,7 +24,7 @@ Install dependencies with `npm install`.
 
 ### Install server repository
 
-This project has a dependency on a seperate development server which can be found at https://github.com/jbuistjbuist/scheduler-api. Please follow the intructions followed there to install the repository.
+This project has a dependency on a seperate development server which can be found at https://github.com/jbuistjbuist/scheduler-api. Please follow the intructions there to install the repository.
 
 ### Running Webpack Development Server
 
