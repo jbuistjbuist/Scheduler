@@ -1,6 +1,6 @@
 # Interview Scheduler
 
-#### Interview scheduler is a single page application built with React and was a part of the Lighthouse Labs web development program. This project was a great way to gain experience with React, Jest, Cypress, Storybook, webSockets, and deploying a production build using CircleCI and Netlify (see https://scheduler-app-jeremy.netlify.app/).
+Interview scheduler is a single page application built with React and was a part of the Lighthouse Labs web development program. This project was a great way to gain experience with React, Jest, Cypress, Storybook, webSockets, and deploying a production build using CircleCI and Netlify (see https://scheduler-app-jeremy.netlify.app/).
 
 ## App Interface
 
